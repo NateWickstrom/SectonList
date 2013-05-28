@@ -1,0 +1,6 @@
+<resources>
+    
+    <integer name="medium_sublist">5</integer>
+    <integer name="large_sublist">3</integer>
+
+</resources>
