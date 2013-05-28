@@ -6,12 +6,11 @@
 
     <include layout="@layout/titlebar_normal" />
 
-    <GridView
+    <mobi.pixi.section.list.ExpandableHeightGridView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="@integer/medium_sublist" 
-        android:stretchMode="columnWidth" >
-    </GridView>
+        android:stretchMode="columnWidth" />
 
 </LinearLayout>

@@ -4,7 +4,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     
-    <dimen name="tile_hight">220dip</dimen>
+	<dimen name="tile_hight_large">280dip</dimen>
+	<dimen name="tile_hight_medium">180dip</dimen>
     
     <integer name="medium_sublist">3</integer>
     <integer name="large_sublist">2</integer>

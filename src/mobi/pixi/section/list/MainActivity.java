@@ -11,12 +11,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.Menu;
 import android.widget.Toast;
 
 public class MainActivity extends ListActivity implements 
 		OnTitlebarClickedListener, OnSubSectionItemClickedListener {
-
+	
 	private ArrayList<Section> mSections; 
 	private SectionListAdaptor mSectionListAdaptor;
 	private Context mContext;	
@@ -28,7 +29,7 @@ public class MainActivity extends ListActivity implements
 		mContext = this;
 		mSectionListAdaptor = new SectionListAdaptor(this,this,this);
 		getListView().setAdapter(mSectionListAdaptor);
-		new LoadTask().execute(0);
+		new LoadTask().execute();
 	}
 
 	@Override
@@ -48,66 +49,17 @@ public class MainActivity extends ListActivity implements
 		
 	}
 
-	private class LoadTask extends AsyncTask<Integer, Void, String> {
+	private class LoadTask extends AsyncTask<Void, Void, Void> {
 		@Override
-		protected String doInBackground(Integer... flags) {
-			mSections = new ArrayList<Section>();
-			
-			ArrayList<Subsection> subs = new ArrayList<Subsection>();
-			subs.add(new Subsection("Title Test","SubTitle Test", 
-					R.layout.subitem));
-			subs.add(new Subsection("Title Test","SubTitle Test", 
-					R.layout.subitem));
-			subs.add(new Subsection("Title Test","SubTitle Test", 
-					R.layout.subitem));
-			subs.add(new Subsection("Title Test","SubTitle Test", 
-					R.layout.subitem));
-			subs.add(new Subsection("Title Test","SubTitle Test", 
-					R.layout.subitem));
-			
-			ArrayList<Subsection> subMedsections = new ArrayList<Subsection>();
-			ArrayList<Subsection> subLarsections = new ArrayList<Subsection>();
-			
-			int lar = mContext.getResources().getInteger(R.integer.large_sublist);
-			int med = mContext.getResources().getInteger(R.integer.medium_sublist);
-			
-			
-			for (int i = 0; i < lar; i++ )
-				subLarsections.add(subs.get(i));
-			
-			for (int i = 0; i < med; i++ )
-				subMedsections.add(subs.get(i));			
-			
-			Section section1 = new Section("Title Test","SubTitle Test", 
-					R.layout.section_medium_tile, subMedsections);
-			
-			Section section2 = new Section("Title Test","SubTitle Test", 
-					R.layout.section_large_tile, subLarsections);
-			
-			Section section3 = new Section("Title Test","SubTitle Test", 
-					R.layout.section_small_tile, new ArrayList<Subsection>());
-			
-			mSections.add(section3);
-			mSections.add(section1);
-			mSections.add(section2);
-			mSections.add(section3);
-			mSections.add(section3);
-			mSections.add(section1);
-			mSections.add(section2);
-			mSections.add(section3);
-			mSections.add(section1);
-			mSections.add(section1);
-			mSections.add(section2);
-			mSections.add(section1);
-			
-			
+		protected Void doInBackground(Void... flags) {
+			mSections = new SectionBuilder(mContext).getSections();
 			return null;
 		}
 		
 		@Override
-	    protected void onPostExecute(String result) {			
+	    protected void onPostExecute(Void nothing) {			
 			mSectionListAdaptor.setSections(mSections);
 		}
-	}
+	}	
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,13 +43,13 @@ public class SectionListAdaptor extends BaseAdapter {
     
     public static class Subsection {
     	String title;
-    	String subtitle;
     	int layoutRes;
+    	Drawable drawable;
     	
-    	public Subsection(String title, String subtitle, int layoutRes){
+    	public Subsection(String title, Drawable drawableRes, int layoutRes){
     		this.title = title;
-    		this.subtitle = subtitle;
     		this.layoutRes = layoutRes;
+    		this.drawable = drawableRes;
     	}
     	
     }
@@ -56,9 +57,9 @@ public class SectionListAdaptor extends BaseAdapter {
     public static class Section extends Subsection {
     	ArrayList<Subsection> subsections;
     	
-		public Section(String title, String subtitle, 
+		public Section(String title, Drawable drawableRes, 
 				int layoutRes, ArrayList<Subsection> subsections) {
-			super(title, subtitle, layoutRes);
+			super(title, drawableRes, layoutRes);
 			this.subsections = subsections;
 		}
     	
@@ -102,16 +103,17 @@ public class SectionListAdaptor extends BaseAdapter {
 		
 		ViewGroup titlebar = (ViewGroup) view.findViewById(R.id.titlebar);
 		TextView title = (TextView) titlebar.findViewById(R.id.title);
-		TextView subtitle = (TextView) titlebar.findViewById(R.id.subtitle);
 		ImageView image = (ImageView) titlebar.findViewById(R.id.image);
 		
 		title.setText(mSections.get(position).title);
-		subtitle.setText(mSections.get(position).subtitle);		
 
+		Drawable imageDrable = mSections.get(position).drawable;
 		if (image != null)
-			;
+			image.setImageDrawable(imageDrable);
 		
-		GridView list = (GridView) view.findViewById(android.R.id.list);		
+		ExpandableHeightGridView list = 
+				(ExpandableHeightGridView) view.findViewById(android.R.id.list);
+		list.setExpanded(true);	
 		list.setAdapter(new SublistAdapter(mContext, 0, 
 				mSections.get(position).subsections));
 		
@@ -150,6 +152,12 @@ public class SectionListAdaptor extends BaseAdapter {
 			final int position = pos;
 			view = mLayoutInflater.inflate(mSubsections.get(position).layoutRes, parent, false);
 				
+			TextView title = (TextView) view.findViewById(R.id.title);
+			ImageView image = (ImageView) view.findViewById(R.id.image);
+			
+			title.setText(mSubsections.get(position).title);
+			image.setImageDrawable(mSubsections.get(position).drawable);
+			
 			return view;
 			
 		}
