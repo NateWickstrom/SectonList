@@ -6,7 +6,7 @@
 
     <include layout="@layout/titlebar_graphic" />
 
-    <mobi.pixi.section.list.ExpandableHeightGridView
+    <GridView
         android:id="@android:id/list"
         android:visibility="gone"
         android:layout_width="match_parent"

@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import mobi.pixi.section.list.SectionListAdaptor.OnSubSectionItemClickedListener;
 import mobi.pixi.section.list.SectionListAdaptor.OnTitlebarClickedListener;
 import mobi.pixi.section.list.SectionListAdaptor.Section;
-import mobi.pixi.section.list.SectionListAdaptor.Subsection;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.view.Menu;
 import android.widget.Toast;
 
