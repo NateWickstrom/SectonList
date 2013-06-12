@@ -1,4 +1,4 @@
-package mobi.pixi.section.list;
+package com.section.list;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,11 +111,7 @@ public class SectionListAdaptor extends BaseAdapter {
 		if (image != null)
 			image.setImageDrawable(imageDrable);
 		
-		//ExpandableHeightGridView list = 
-		//		(ExpandableHeightGridView) view.findViewById(android.R.id.list);
-		//list.setExpanded(true);	
-		GridView list = 
-				(GridView) view.findViewById(android.R.id.list);
+		GridView list = (GridView) view.findViewById(android.R.id.list);
 		list.setAdapter(new SublistAdapter(mContext, 0, 
 				mSections.get(position).subsections));
 		

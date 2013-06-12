@@ -1,12 +1,12 @@
-package mobi.pixi.section.list;
+package com.section.list;
 
 import java.util.ArrayList;
 
+import com.section.list.SectionListAdaptor.Section;
+import com.section.list.SectionListAdaptor.Subsection;
+
 import android.content.Context;
 import android.content.res.Resources;
-
-import mobi.pixi.section.list.SectionListAdaptor.Section;
-import mobi.pixi.section.list.SectionListAdaptor.Subsection;
 
 public class SectionBuilder {
 

@@ -1,19 +1,18 @@
-package mobi.pixi.section.list;
+package com.section.list;
 
 import java.util.ArrayList;
 
-import mobi.pixi.section.list.SectionListAdaptor.OnSubSectionItemClickedListener;
-import mobi.pixi.section.list.SectionListAdaptor.OnTitlebarClickedListener;
-import mobi.pixi.section.list.SectionListAdaptor.Section;
+import com.section.list.SectionListAdaptor.OnSubSectionItemClickedListener;
+import com.section.list.SectionListAdaptor.OnTitlebarClickedListener;
+import com.section.list.SectionListAdaptor.Section;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Context;
 import android.view.Menu;
 import android.widget.Toast;
 
-public class MainActivity extends ListActivity implements 
+public class SectionListActivity extends ListActivity implements 
 		OnTitlebarClickedListener, OnSubSectionItemClickedListener {
 	
 	private ArrayList<Section> mSections; 
@@ -27,7 +26,10 @@ public class MainActivity extends ListActivity implements
 		mContext = this;
 		mSectionListAdaptor = new SectionListAdaptor(this,this,this);
 		getListView().setAdapter(mSectionListAdaptor);
-		new LoadTask().execute();
+		
+		mSections = new SectionBuilder(mContext).getSections();
+		mSectionListAdaptor.setSections(mSections);
+		
 	}
 
 	@Override
@@ -46,18 +48,5 @@ public class MainActivity extends ListActivity implements
 		Toast.makeText(this, "Title = " + index, Toast.LENGTH_SHORT).show();
 		
 	}
-
-	private class LoadTask extends AsyncTask<Void, Void, Void> {
-		@Override
-		protected Void doInBackground(Void... flags) {
-			mSections = new SectionBuilder(mContext).getSections();
-			return null;
-		}
-		
-		@Override
-	    protected void onPostExecute(Void nothing) {			
-			mSectionListAdaptor.setSections(mSections);
-		}
-	}	
 
 }
