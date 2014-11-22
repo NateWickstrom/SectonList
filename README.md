@@ -1,4 +1,4 @@
-Secrtion List 
+Section List 
 =================
 
 ![Example Image][1]
